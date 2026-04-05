@@ -1,0 +1,673 @@
+/* =====================================================
+   SIMY Responsive CSS
+   Mobile-first responsive overrides
+   Breakpoints: sm=640px, md=768px, lg=1024px
+   ===================================================== */
+
+/* -------------------------------------------------------
+   1. BOTTOM NAVIGATION BAR (Mobile Only)
+   ------------------------------------------------------- */
+
+.simy-bottom-nav {
+  display: none;
+}
+
+/* Force mobile mode when body has .simy-mobile-force class (for ?mobile=1 param) */
+body.simy-mobile-force .simy-bottom-nav {
+  display: flex !important;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: var(--sidebar, #fff);
+  border-top: 1px solid var(--border, #e5e7eb);
+  z-index: 200;
+  align-items: stretch;
+  justify-content: space-around;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  box-shadow: 0 -2px 12px rgba(0,0,0,0.08);
+}
+
+@media (max-width: 767px) {
+  /* ---- Bottom Navigation Bar ---- */
+  .simy-bottom-nav {
+    display: flex !important;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: var(--sidebar, #fff);
+    border-top: 1px solid var(--border, #e5e7eb);
+    z-index: 200;
+    align-items: stretch;
+    justify-content: space-around;
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    box-shadow: 0 -2px 12px rgba(0,0,0,0.08);
+  }
+
+  .simy-bnav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    gap: 2px;
+    cursor: pointer;
+    color: var(--muted-foreground, #6b7280);
+    font-size: 9px;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 500;
+    border: none;
+    background: transparent;
+    padding: 6px 2px 4px;
+    transition: color 0.15s;
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+  }
+
+  .simy-bnav-item.active {
+    color: oklch(0.48 0.22 264);
+  }
+
+  .simy-bnav-item svg {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+  }
+
+  .simy-bnav-item span {
+    line-height: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 56px;
+    text-align: center;
+  }
+
+  /* ---- More Menu ---- */
+  #simy-more-menu {
+    position: fixed;
+    inset: 0;
+    z-index: 300;
+  }
+
+  .simy-more-menu-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(2px);
+  }
+
+  .simy-more-menu-panel {
+    position: absolute;
+    bottom: 60px;
+    left: 0;
+    right: 0;
+    background: var(--background, #fff);
+    border-top: 1px solid var(--border, #e5e7eb);
+    border-radius: 16px 16px 0 0;
+    box-shadow: 0 -4px 24px rgba(0,0,0,0.12);
+    max-height: 70vh;
+    overflow-y: auto;
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  .simy-more-menu-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px 12px;
+    border-bottom: 1px solid var(--border, #e5e7eb);
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--foreground, #111);
+    font-family: 'Sora', sans-serif;
+  }
+
+  .simy-more-menu-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    border: none;
+    background: var(--accent, #f3f4f6);
+    color: var(--muted-foreground, #6b7280);
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .simy-more-menu-list {
+    padding: 8px 0;
+  }
+
+  .simy-more-menu-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 14px 20px;
+    border: none;
+    background: transparent;
+    color: var(--foreground, #111);
+    font-size: 14px;
+    font-weight: 500;
+    font-family: 'Noto Sans JP', sans-serif;
+    cursor: pointer;
+    text-align: left;
+    -webkit-tap-highlight-color: transparent;
+    transition: background 0.1s;
+  }
+
+  .simy-more-menu-item:active {
+    background: var(--accent, #f3f4f6);
+  }
+}
+
+/* -------------------------------------------------------
+   2. GLOBAL MOBILE LAYOUT
+   ------------------------------------------------------- */
+
+/* Force mobile layout when ?mobile=1 is in URL */
+body.simy-mobile-force [data-loc="client/src/components/Sidebar.tsx:146"] {
+  display: none !important;
+}
+body.simy-mobile-force [data-loc="client/src/components/MainLayout.tsx:102"] {
+  padding-bottom: calc(60px + env(safe-area-inset-bottom, 0px)) !important;
+  width: 100% !important;
+}
+body.simy-mobile-force .simy-bnav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  gap: 2px;
+  cursor: pointer;
+  color: var(--muted-foreground, #6b7280);
+  font-size: 9px;
+  font-weight: 500;
+  border: none;
+  background: transparent;
+  padding: 6px 2px 4px;
+  transition: color 0.15s;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+}
+body.simy-mobile-force .simy-bnav-item.active {
+  color: oklch(0.48 0.22 264);
+}
+body.simy-mobile-force .simy-bnav-item svg {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+}
+body.simy-mobile-force .simy-bnav-item span {
+  line-height: 1;
+  white-space: nowrap;
+  font-family: 'Noto Sans JP', sans-serif;
+}
+body.simy-mobile-force #simy-more-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+}
+body.simy-mobile-force .simy-more-menu-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+}
+body.simy-mobile-force .simy-more-menu-panel {
+  position: absolute;
+  bottom: 60px;
+  left: 0;
+  right: 0;
+  background: var(--background, #fff);
+  border-top: 1px solid var(--border, #e5e7eb);
+  border-radius: 16px 16px 0 0;
+  box-shadow: 0 -4px 24px rgba(0,0,0,0.12);
+  max-height: 70vh;
+  overflow-y: auto;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+body.simy-mobile-force .simy-more-menu-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px 12px;
+  border-bottom: 1px solid var(--border, #e5e7eb);
+  font-weight: 600;
+  font-size: 15px;
+}
+body.simy-mobile-force .simy-more-menu-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  color: var(--muted-foreground, #6b7280);
+}
+body.simy-mobile-force .simy-more-menu-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 14px 20px;
+  border: none;
+  background: transparent;
+  color: var(--foreground, #111);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: left;
+}
+
+@media (max-width: 767px) {
+  /* Prevent horizontal overflow */
+  body {
+    overflow-x: hidden;
+  }
+
+  /* Full screen height for mobile browsers */
+  .h-screen {
+    height: 100dvh !important;
+  }
+
+  /* Hide the sidebar on mobile */
+  [data-loc="client/src/components/Sidebar.tsx:146"] {
+    display: none !important;
+  }
+
+  /* Main content area: full width + bottom padding for nav */
+  [data-loc="client/src/components/MainLayout.tsx:102"] {
+    padding-bottom: calc(60px + env(safe-area-inset-bottom, 0px)) !important;
+    width: 100% !important;
+  }
+
+  /* Modal/overlay: full screen on mobile */
+  [class*="fixed inset-0"][class*="flex items-center justify-center"] {
+    padding: 8px !important;
+  }
+
+  /* Popup panels: full width on mobile */
+  .max-w-\[400px\] {
+    max-width: calc(100vw - 16px) !important;
+  }
+  .max-w-\[620px\] {
+    max-width: calc(100vw - 16px) !important;
+  }
+}
+
+/* -------------------------------------------------------
+   3. PAGE-LEVEL RESPONSIVE OVERRIDES
+   ------------------------------------------------------- */
+
+/* ---- TwinPage ---- */
+@media (max-width: 767px) {
+  /* Suggestion grid: 2-col → 1-col */
+  [data-loc="client/src/pages/TwinPage.tsx:379"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Header padding */
+  [data-loc="client/src/pages/TwinPage.tsx:347"] {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  /* Chat bubble max width */
+  [data-loc="client/src/pages/TwinPage.tsx:210"] {
+    max-width: 88% !important;
+  }
+
+  /* Input area padding */
+  [data-loc="client/src/pages/TwinPage.tsx:344"] {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}
+
+/* ---- MyActionsPage ---- */
+@media (max-width: 767px) {
+  /* 3-column layout → single column */
+  [data-loc="client/src/pages/MyActionsPage.tsx:481"] {
+    flex-direction: column !important;
+  }
+
+  /* Left sidebar (bucket nav) → horizontal scrollable tabs */
+  [data-loc="client/src/pages/MyActionsPage.tsx:484"] {
+    width: 100% !important;
+    height: auto !important;
+    flex-shrink: 0 !important;
+    border-right: none !important;
+    border-bottom: 1px solid var(--border, #e5e7eb) !important;
+    flex-direction: row !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    min-height: unset !important;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  [data-loc="client/src/pages/MyActionsPage.tsx:484"]::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Nav inside left sidebar → horizontal */
+  [data-loc="client/src/pages/MyActionsPage.tsx:500"] {
+    flex-direction: row !important;
+    flex: unset !important;
+    padding: 6px 8px !important;
+    gap: 4px !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    white-space: nowrap !important;
+  }
+
+  /* Hide search bar in left panel on mobile */
+  [data-loc="client/src/pages/MyActionsPage.tsx:486"] {
+    display: none !important;
+  }
+
+  /* Nav items in horizontal mode: each item should be inline */
+  [data-loc="client/src/pages/MyActionsPage.tsx:500"] > * {
+    flex-shrink: 0 !important;
+    width: auto !important;
+  }
+
+  /* Hide footer stats in left panel on mobile */
+  [data-loc="client/src/pages/MyActionsPage.tsx:544"] {
+    display: none !important;
+  }
+
+  /* Center list panel: full width */
+  [data-loc="client/src/pages/MyActionsPage.tsx:559"] {
+    border-right: none !important;
+    width: 100% !important;
+    flex: 1 !important;
+    min-height: 0 !important;
+    overflow-y: auto !important;
+  }
+
+  /* Right detail panel: hidden on mobile */
+  [data-loc="client/src/pages/MyActionsPage.tsx:700"] {
+    display: none !important;
+  }
+}
+
+/* ---- AgentRequestsPage ---- */
+@media (max-width: 767px) {
+  /* 2-column layout → single column */
+  [data-loc="client/src/pages/AgentRequestsPage.tsx:448"] {
+    flex-direction: column !important;
+  }
+
+  /* Left panel: full width, fixed height */
+  [data-loc="client/src/pages/AgentRequestsPage.tsx:450"] {
+    width: 100% !important;
+    height: auto !important;
+    max-height: 40vh !important;
+    border-right: none !important;
+    border-bottom: 1px solid var(--border, #e5e7eb) !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* Right panel: full width */
+  [data-loc="client/src/pages/AgentRequestsPage.tsx:521"] {
+    flex: 1 !important;
+    min-height: 0 !important;
+  }
+}
+
+/* ---- MeetingsPage ---- */
+@media (max-width: 767px) {
+  /* 2-column layout → single column */
+  [data-loc="client/src/pages/MeetingsPage.tsx:298"] {
+    flex-direction: column !important;
+  }
+
+  /* Left panel: full width, fixed height */
+  [data-loc="client/src/pages/MeetingsPage.tsx:300"] {
+    width: 100% !important;
+    height: auto !important;
+    max-height: 40vh !important;
+    border-right: none !important;
+    border-bottom: 1px solid var(--border, #e5e7eb) !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* Right panel: full width */
+  [data-loc="client/src/pages/MeetingsPage.tsx:351"] {
+    flex: 1 !important;
+    min-height: 0 !important;
+  }
+}
+
+/* ---- IssuePage ---- */
+@media (max-width: 767px) {
+  /* 2-column layout → single column */
+  [data-loc="client/src/pages/IssuePage.tsx:906"] {
+    flex-direction: column !important;
+  }
+
+  /* Left panel: full width, horizontal tabs */
+  [data-loc="client/src/pages/IssuePage.tsx:909"] {
+    width: 100% !important;
+    height: auto !important;
+    border-right: none !important;
+    border-bottom: 1px solid var(--border, #e5e7eb) !important;
+    flex-direction: row !important;
+    overflow-x: auto !important;
+    flex-shrink: 0 !important;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  [data-loc="client/src/pages/IssuePage.tsx:909"]::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* ---- ProductDashboardPage ---- */
+@media (max-width: 767px) {
+  /* Main container: reduce padding */
+  [data-loc="client/src/pages/ProductDashboardPage.tsx:177"] {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+    padding-top: 12px !important;
+  }
+
+  /* Header: stack vertically */
+  [data-loc="client/src/pages/ProductDashboardPage.tsx:180"] {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 8px !important;
+  }
+
+  /* 6-col grid → 2-col */
+  [data-loc="client/src/pages/ProductDashboardPage.tsx:98"] {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  /* 2-col grid [1fr_320px] → 1-col */
+  [data-loc="client/src/pages/ProductDashboardPage.tsx:281"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* 4-col grid → 2-col */
+  [data-loc="client/src/pages/ProductDashboardPage.tsx:333"] {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  /* 3-col grid → 1-col */
+  [data-loc="client/src/pages/ProductDashboardPage.tsx:508"] {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ---- TeamPage ---- */
+@media (max-width: 767px) {
+  /* Main container: reduce padding */
+  [data-loc="client/src/pages/TeamPage.tsx:465"] {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  /* 4-col stats grid → 2-col */
+  [data-loc="client/src/pages/TeamPage.tsx:248"] {
+    grid-template-columns: repeat(2, 1fr) !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  /* 3-col grid → 2-col */
+  [data-loc="client/src/pages/TeamPage.tsx:199"] {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  /* Member grid */
+  [data-loc="client/src/pages/TeamPage.tsx:570"] {
+    grid-template-columns: repeat(2, 1fr) !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+}
+
+/* ---- LeaderboardPage ---- */
+@media (max-width: 767px) {
+  /* Main container: reduce padding */
+  [data-loc="client/src/pages/LeaderboardPage.tsx:548"] {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+
+  /* 3-col grid → 1-col */
+  [data-loc="client/src/pages/LeaderboardPage.tsx:253"] {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ---- ActivityPage ---- */
+@media (max-width: 767px) {
+  /* 4-col grids → 2-col */
+  [data-loc="client/src/pages/ActivityPage.tsx:147"],
+  [data-loc="client/src/pages/ActivityPage.tsx:241"],
+  [data-loc="client/src/pages/ActivityPage.tsx:560"] {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  /* 5-col grid → 2-col */
+  [data-loc="client/src/pages/ActivityPage.tsx:428"] {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  /* 3-col grid → 2-col */
+  [data-loc="client/src/pages/ActivityPage.tsx:449"],
+  [data-loc="client/src/pages/ActivityPage.tsx:644"] {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+/* ---- AdminPage ---- */
+@media (max-width: 767px) {
+  [data-loc="client/src/pages/AdminPage.tsx:658"] {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+    padding-top: 16px !important;
+    padding-bottom: 16px !important;
+  }
+}
+
+/* ---- SettingsPage ---- */
+@media (max-width: 767px) {
+  [data-loc="client/src/pages/SettingsPage.tsx:663"] {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}
+
+/* -------------------------------------------------------
+   4. TABLET (768px - 1023px) OVERRIDES
+   ------------------------------------------------------- */
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  /* ProductDashboardPage: 6-col → 3-col */
+  [data-loc="client/src/pages/ProductDashboardPage.tsx:98"] {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+
+  /* ProductDashboardPage: 4-col → 2-col */
+  [data-loc="client/src/pages/ProductDashboardPage.tsx:333"] {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  /* ActivityPage: 4-col → 2-col */
+  [data-loc="client/src/pages/ActivityPage.tsx:147"],
+  [data-loc="client/src/pages/ActivityPage.tsx:241"],
+  [data-loc="client/src/pages/ActivityPage.tsx:560"] {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  /* ActivityPage: 5-col → 3-col */
+  [data-loc="client/src/pages/ActivityPage.tsx:428"] {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+
+  /* MeetingsPage left panel: narrower */
+  [data-loc="client/src/pages/MeetingsPage.tsx:300"] {
+    width: 300px !important;
+  }
+
+  /* AgentRequestsPage left panel: narrower */
+  [data-loc="client/src/pages/AgentRequestsPage.tsx:450"] {
+    width: 280px !important;
+  }
+
+  /* MyActionsPage right panel: narrower */
+  [data-loc="client/src/pages/MyActionsPage.tsx:700"] {
+    width: 320px !important;
+  }
+}
+
+/* -------------------------------------------------------
+   5. DARK MODE SUPPORT FOR BOTTOM NAV
+   ------------------------------------------------------- */
+
+@media (max-width: 767px) {
+  /* Dark mode bottom nav */
+  .dark .simy-bottom-nav,
+  [data-theme="dark"] .simy-bottom-nav {
+    background: var(--sidebar, #0f1117);
+    border-top-color: var(--border, #2a2d3a);
+  }
+
+  .dark .simy-more-menu-panel,
+  [data-theme="dark"] .simy-more-menu-panel {
+    background: var(--background, #0f1117);
+    border-top-color: var(--border, #2a2d3a);
+  }
+
+  .dark .simy-more-menu-header,
+  [data-theme="dark"] .simy-more-menu-header {
+    border-bottom-color: var(--border, #2a2d3a);
+    color: var(--foreground, #fff);
+  }
+
+  .dark .simy-more-menu-close,
+  [data-theme="dark"] .simy-more-menu-close {
+    background: var(--accent, #1a1d2a);
+  }
+
+  .dark .simy-more-menu-item,
+  [data-theme="dark"] .simy-more-menu-item {
+    color: var(--foreground, #fff);
+  }
+
+  .dark .simy-more-menu-item:active,
+  [data-theme="dark"] .simy-more-menu-item:active {
+    background: var(--accent, #1a1d2a);
+  }
+}
